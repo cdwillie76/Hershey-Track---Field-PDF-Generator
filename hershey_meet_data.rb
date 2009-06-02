@@ -78,9 +78,11 @@ class HersheyMeetData
     results.to_a
   end
   
-  def each_event
-    @age_groups.each_value do |event|
-      event.each_value { |e| yield e }
+  def each_event_as_array
+    @age_groups.each do |age_group, event_hash|
+      event_hash.each_key do |event|
+        yield age_group, event, event_array(age_group, event)
+      end
     end
   end
 end
