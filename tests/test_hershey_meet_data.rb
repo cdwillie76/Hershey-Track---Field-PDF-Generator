@@ -1,12 +1,13 @@
 require 'test/unit'
 require 'pp'
 
-require '../hershey_meet_data'
+require File.dirname(__FILE__) + '/../hershey_meet_data'
 
 class TestHersheyMeetData < Test::Unit::TestCase
   
   def test_one_participant
     test_participant = ['#1 John Doe', 'Cherry Valley', 'Standing Long Jump', 'Boys 9 & 10']
+    boys9_10_standing_long_jump = [['#1 John Doe', 'Cherry Valley', '', '', '', '']]
         
     hershey_meet_data = HersheyMeetData.new
     hershey_meet_data.add_participant( test_participant[0], test_participant[1], test_participant[2], test_participant[3])
@@ -14,7 +15,7 @@ class TestHersheyMeetData < Test::Unit::TestCase
     assert(hershey_meet_data.has_age_group?('Boys 9 & 10'))
     assert(hershey_meet_data.has_event?('Boys 9 & 10', 'Standing Long Jump'))
     assert_equal(1, hershey_meet_data.participant_count('Boys 9 & 10', 'Standing Long Jump'))
-    
+    assert_equal(boys9_10_standing_long_jump, hershey_meet_data.event_array('Boys 9 & 10', 'Standing Long Jump'))
   end
   
   def test_multiple_participants

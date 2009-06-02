@@ -1,10 +1,12 @@
+require 'participant'
+
 class HersheyMeetData
   @@field_events = ['Softball Throw', 'Standing Long Jump']
-  
+
   def initialize
     @age_groups = {}
   end
-  
+
   def add_participant(name, community, event, age_group)
     # create a hash if the age group doesn't exist
     @age_groups[age_group] ||= {}
@@ -17,40 +19,29 @@ class HersheyMeetData
     participant_array = age_group_events[event]
 
     # create an array that represents the participant for that age group and event
-    participant_info = []
-    participant_info << name
-    participant_info << community
-
-    # the array needs to have blank elements for the table to print out correctly
-    if @@field_events.include?(event)
-      4.times do
-        participant_info << ''
-      end
-    else
-      2.times do
-        participant_info << ''
-      end
-    end
+    participant = Participant.new
+    participant.name = name
+    participant.community = community
 
     # add participant_info to the participant_array
-    participant_array << participant_info
-  end  
-  
-  def age_group_count 
+    participant_array << participant
+  end
+
+  def age_group_count
     @age_groups.size
   end
-  
+
   def has_age_group?(age_group)
     @age_groups.has_key?(age_group)
   end
-  
+
   def has_event?(age_group, event)
     age_group_events = @age_groups[age_group]
     if age_group_events
       age_group_events.has_key?(event)
     end
   end
-  
+
   def participant_count(age_group, event)
     age_group_events = @age_groups[age_group]
     if age_group_events
@@ -58,6 +49,33 @@ class HersheyMeetData
         age_group_events[event].size
       end
     end
+  end
+
+  def event_array(age_group, event)
+    results = []
+    age_group_events = @age_groups[age_group]
+    if age_group_events
+      if age_group_events.has_key?(event)
+        event_participants = age_group_events.fetch(event)
+        event_participants.each do |participant|
+          row = []
+          row << participant.name.to_s
+          row << participant.community.to_s
+          if @@field_events.include?(event)
+            4.times do
+              row << ''
+            end
+          else
+            2.times do
+              row << ''
+            end
+          end
+          results << row
+        end
+      end
+    end
+    
+    results.to_a
   end
   
   def each_event
