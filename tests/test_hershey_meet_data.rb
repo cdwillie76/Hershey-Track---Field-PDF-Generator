@@ -37,7 +37,32 @@ class TestHersheyMeetData < Test::Unit::TestCase
         ['#15 John Doe', 'Anytown', '200 M Dash', 'Girls 9 & 10'],
         ['#16 John Doe', 'Anytown', '200 M Dash', 'Girls 9 & 10'],
         ['#17 John Doe', 'Anytown', '200 M Dash', 'Girls 9 & 10'] ]
-        
+    
+    boys9_10_standing_long_jump =
+    [ ['#1 John Doe', 'Cherry Valley', '', '', '', ''], 
+      ['#2 John Doe', 'Ilion', '', '', '', ''],
+      ['#3 John Doe', 'Manilus', '', '', '', ''],
+      ['#4 John Doe', 'Anytown', '', '', '', ''],
+      ['#5 John Doe', 'Anytown', '', '', '', '']]
+      
+    girls9_10_standing_long_jump = 
+    [ ['#6 John Doe', 'Anytown', '', '', '', ''],
+      ['#7 John Doe', 'Anytown', '', '', '', ''],
+      ['#8 John Doe', 'Anytown', '', '', '', '']]
+      
+    boys9_10_200m_dash = 
+    [ ['#9 John Doe', 'Anytown', '', ''],
+      ['#10 John Doe', 'Anytown', '', ''],
+      ['#11 John Doe', 'Anytown', '', ''],
+      ['#12 John Doe', 'Anytown', '', ''],
+      ['#13 John Doe', 'Anytown', '', '']]
+    
+    girls9_10_200m_dash = 
+    [ ['#14 John Doe', 'Anytown', '', ''],
+      ['#15 John Doe', 'Anytown', '', ''],
+      ['#16 John Doe', 'Anytown', '', ''],
+      ['#17 John Doe', 'Anytown', '', '']]
+  
     hershey_meet_data = HersheyMeetData.new
     
     test_participants.each {|item|
@@ -47,20 +72,22 @@ class TestHersheyMeetData < Test::Unit::TestCase
     assert(hershey_meet_data.has_age_group?('Boys 9 & 10'))
     assert(hershey_meet_data.has_event?('Boys 9 & 10', 'Standing Long Jump'))
     assert_equal(5, hershey_meet_data.participant_count('Boys 9 & 10', 'Standing Long Jump'))
+    assert_equal(boys9_10_standing_long_jump, hershey_meet_data.event_array('Boys 9 & 10', 'Standing Long Jump'))
+    
     assert(hershey_meet_data.has_age_group?('Boys 9 & 10'))
     assert(hershey_meet_data.has_event?('Boys 9 & 10', '200 M Dash'))
     assert_equal(5, hershey_meet_data.participant_count('Boys 9 & 10', '200 M Dash'))
+    assert_equal(boys9_10_200m_dash, hershey_meet_data.event_array('Boys 9 & 10', '200 M Dash'))
     
     assert(hershey_meet_data.has_age_group?('Girls 9 & 10'))
     assert(hershey_meet_data.has_event?('Girls 9 & 10', 'Standing Long Jump'))
     assert_equal(3, hershey_meet_data.participant_count('Girls 9 & 10', 'Standing Long Jump'))
+    assert_equal(girls9_10_standing_long_jump, hershey_meet_data.event_array('Girls 9 & 10', 'Standing Long Jump'))
+    
     assert(hershey_meet_data.has_age_group?('Girls 9 & 10'))
     assert(hershey_meet_data.has_event?('Girls 9 & 10', '200 M Dash'))
     assert_equal(4, hershey_meet_data.participant_count('Girls 9 & 10', '200 M Dash'))
-    
-    hershey_meet_data.each_event {|event|
-      pp event
-    }
+    assert_equal(girls9_10_200m_dash, hershey_meet_data.event_array('Girls 9 & 10', '200 M Dash'))
   end
   
 end
