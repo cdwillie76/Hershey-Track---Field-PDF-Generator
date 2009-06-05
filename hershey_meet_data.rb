@@ -85,4 +85,9 @@ class HersheyMeetData
       end
     end
   end
+  
+  # str.scan(/'([\d]*):([\d]*).([\d]*)/)
+  # sort help
+  # objects.sort_by {|obj| obj.attribute}
+  # http://stackoverflow.com/questions/882070/sorting-an-array-of-objects-in-ruby-by-object-attribute
 end

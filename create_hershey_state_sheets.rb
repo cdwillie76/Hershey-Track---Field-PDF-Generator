@@ -7,7 +7,6 @@ require 'participant'
 require 'hershey_meet_data'
 require 'hershey_pdf'
 
-
 if ARGV[0] != nil
   workbook = Spreadsheet::ParseExcel.parse(ARGV[0]) 
 
@@ -26,9 +25,6 @@ if ARGV[0] != nil
   last_name_index = 17
   community_index = 19
   time_distance_index = 21
-  
-  test_str = "123 John Smith"
-  puts "Name: " + test_str + " - "+ test_str.inspect
   
   worksheet.each(skip) { |row| 
     name = row.at(first_name_index).to_s('utf-8') + " " + row.at(last_name_index).to_s('utf-8')
