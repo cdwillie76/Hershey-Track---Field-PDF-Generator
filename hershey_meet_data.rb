@@ -7,7 +7,7 @@ class HersheyMeetData
     @age_groups = {}
   end
 
-  def add_participant(name, community, event, age_group)
+  def add_participant(name, community, event, age_group, time_distance)
     # create a hash if the age group doesn't exist
     @age_groups[age_group] ||= {}
 
@@ -22,6 +22,7 @@ class HersheyMeetData
     participant = Participant.new
     participant.name = name
     participant.community = community
+    participant.time_distance = time_distance
 
     # add participant_info to the participant_array
     participant_array << participant

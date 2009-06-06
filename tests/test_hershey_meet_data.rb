@@ -13,7 +13,7 @@ class TestHersheyMeetData < Test::Unit::TestCase
     boys9_10_standing_long_jump = [['#1 John Doe', 'Cherry Valley', '', '', '', '']]
         
     hershey_meet_data = HersheyMeetData.new
-    hershey_meet_data.add_participant( test_participant[0], test_participant[1], test_participant[2], test_participant[3])
+    hershey_meet_data.add_participant( test_participant[0], test_participant[1], test_participant[2], test_participant[3], nil)
     
     # Not sure if I need these tests anymore now that I have the each_event_as_array method
     assert(hershey_meet_data.has_age_group?('Boys 9 & 10'))
@@ -33,55 +33,55 @@ class TestHersheyMeetData < Test::Unit::TestCase
     
     # input data
     test_participants =
-      [ ['#1 John Doe', 'Cherry Valley', 'Standing Long Jump', 'Boys 9 & 10'], 
-        ['#2 John Doe', 'Ilion', 'Standing Long Jump', 'Boys 9 & 10'],
-        ['#3 John Doe', 'Manilus', 'Standing Long Jump', 'Boys 9 & 10'],
-        ['#4 John Doe', 'Anytown', 'Standing Long Jump', 'Boys 9 & 10'],
-        ['#5 John Doe', 'Anytown', 'Standing Long Jump', 'Boys 9 & 10'],
-        ['#6 John Doe', 'Anytown', 'Standing Long Jump', 'Girls 9 & 10'],
-        ['#7 John Doe', 'Anytown', 'Standing Long Jump', 'Girls 9 & 10'],
-        ['#8 John Doe', 'Anytown', 'Standing Long Jump', 'Girls 9 & 10'],
-        ['#9 John Doe', 'Anytown', '200 M Dash', 'Boys 9 & 10'],
-        ['#10 John Doe', 'Anytown', '200 M Dash', 'Boys 9 & 10'],
-        ['#11 John Doe', 'Anytown', '200 M Dash', 'Boys 9 & 10'],
-        ['#12 John Doe', 'Anytown', '200 M Dash', 'Boys 9 & 10'],
-        ['#13 John Doe', 'Anytown', '200 M Dash', 'Boys 9 & 10'],
-        ['#14 John Doe', 'Anytown', '200 M Dash', 'Girls 9 & 10'],
-        ['#15 John Doe', 'Anytown', '200 M Dash', 'Girls 9 & 10'],
-        ['#16 John Doe', 'Anytown', '200 M Dash', 'Girls 9 & 10'],
-        ['#17 John Doe', 'Anytown', '200 M Dash', 'Girls 9 & 10'] ]
+      [ ['#1 John Doe', 'Cherry Valley', 'Standing Long Jump', 'Boys 9 & 10',"'00:00.50"], 
+        ['#2 John Doe', 'Ilion', 'Standing Long Jump', 'Boys 9 & 10',"'05:00.50"],
+        ['#3 John Doe', 'Manilus', 'Standing Long Jump', 'Boys 9 & 10',"'05:03.50"],
+        ['#4 John Doe', 'Anytown', 'Standing Long Jump', 'Boys 9 & 10',"'15:00.50"],
+        ['#5 John Doe', 'Anytown', 'Standing Long Jump', 'Boys 9 & 10',"'03:00.00"],
+        ['#6 John Doe', 'Anytown', 'Standing Long Jump', 'Girls 9 & 10',"'03:00.00"],
+        ['#7 John Doe', 'Anytown', 'Standing Long Jump', 'Girls 9 & 10',"'12:00.00"],
+        ['#8 John Doe', 'Anytown', 'Standing Long Jump', 'Girls 9 & 10',"'03:10.00"],
+        ['#9 John Doe', 'Anytown', '200 M Dash', 'Boys 9 & 10',"'13:00.00"],
+        ['#10 John Doe', 'Anytown', '200 M Dash', 'Boys 9 & 10',"'00:45.25"],
+        ['#11 John Doe', 'Anytown', '200 M Dash', 'Boys 9 & 10',"'00:45.00"],
+        ['#12 John Doe', 'Anytown', '200 M Dash', 'Boys 9 & 10',"'01:10.00"],
+        ['#13 John Doe', 'Anytown', '200 M Dash', 'Boys 9 & 10',"'03:00.00"],
+        ['#14 John Doe', 'Anytown', '200 M Dash', 'Girls 9 & 10',"'03:10.00"],
+        ['#15 John Doe', 'Anytown', '200 M Dash', 'Girls 9 & 10',"'00:55.25"],
+        ['#16 John Doe', 'Anytown', '200 M Dash', 'Girls 9 & 10',"'10:00.00"],
+        ['#17 John Doe', 'Anytown', '200 M Dash', 'Girls 9 & 10',"'00:55.00"] ]
     
     # result data
     boys9_10_standing_long_jump =
-    [ ['#1 John Doe', 'Cherry Valley', '', '', '', ''], 
-      ['#2 John Doe', 'Ilion', '', '', '', ''],
+    [ ['#4 John Doe', 'Anytown', '', '', '', ''],
       ['#3 John Doe', 'Manilus', '', '', '', ''],
-      ['#4 John Doe', 'Anytown', '', '', '', ''],
-      ['#5 John Doe', 'Anytown', '', '', '', '']]
+      ['#2 John Doe', 'Ilion', '', '', '', ''],
+      ['#5 John Doe', 'Anytown', '', '', '', ''],
+      ['#1 John Doe', 'Cherry Valley', '', '', '', ''] ]
       
     girls9_10_standing_long_jump = 
-    [ ['#6 John Doe', 'Anytown', '', '', '', ''],
-      ['#7 John Doe', 'Anytown', '', '', '', ''],
-      ['#8 John Doe', 'Anytown', '', '', '', '']]
+    [ ['#7 John Doe', 'Anytown', '', '', '', ''],
+      ['#8 John Doe', 'Anytown', '', '', '', ''],
+      ['#6 John Doe', 'Anytown', '', '', '', '']]
       
     boys9_10_200m_dash = 
-    [ ['#9 John Doe', 'Anytown', '', ''],
+    [ ['#11 John Doe', 'Anytown', '', ''],
       ['#10 John Doe', 'Anytown', '', ''],
-      ['#11 John Doe', 'Anytown', '', ''],
       ['#12 John Doe', 'Anytown', '', ''],
-      ['#13 John Doe', 'Anytown', '', '']]
+      ['#13 John Doe', 'Anytown', '', ''],
+      ['#9 John Doe', 'Anytown', '', '']]
     
     girls9_10_200m_dash = 
-    [ ['#14 John Doe', 'Anytown', '', ''],
+    [ ['#17 John Doe', 'Anytown', '', ''],
       ['#15 John Doe', 'Anytown', '', ''],
-      ['#16 John Doe', 'Anytown', '', ''],
-      ['#17 John Doe', 'Anytown', '', '']]
+      ['#14 John Doe', 'Anytown', '', ''],
+      ['#16 John Doe', 'Anytown', '', '']]
   
     hershey_meet_data = HersheyMeetData.new
     
     # load participants
     test_participants.each {|item|
-      hershey_meet_data.add_participant(item[0], item[1], item[2], item[3])
+      hershey_meet_data.add_participant(item[0], item[1], item[2], item[3], item[4])
     }
     
     count_events = 0
