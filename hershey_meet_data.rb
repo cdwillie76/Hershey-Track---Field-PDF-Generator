@@ -1,8 +1,7 @@
+require 'event'
 require 'participant'
 
 class HersheyMeetData
-  @@field_events = ['Softball Throw', 'Standing Long Jump']
-
   def initialize
     @age_groups = {}
   end
@@ -59,18 +58,17 @@ class HersheyMeetData
       if age_group_events.has_key?(event)
         event_participants = age_group_events.fetch(event)
         
-        if @@field_events.include?(event)
+        if Event.is_field_event?(event)
           event_participants.sort!{ |a, b| Participant.field_event_sort(a, b) }
         else
           event_participants.sort!{ |a, b| Participant.running_event_sort(a, b) }
         end
         
-        
         event_participants.each do |participant|
           row = []
           row << participant.name.to_s
           row << participant.community.to_s
-          if @@field_events.include?(event)
+          if Event.is_field_event?(event)
             4.times do
               row << ''
             end

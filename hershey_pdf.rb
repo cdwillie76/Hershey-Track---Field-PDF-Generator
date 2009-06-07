@@ -2,6 +2,8 @@ require 'rubygems'
 require 'prawn'
 require 'prawn/layout'
 
+require 'event'
+
 class HersheyPdf
   @@field_events = ['Softball Throw', 'Standing Long Jump']
 
@@ -15,7 +17,7 @@ class HersheyPdf
     pdf.text "Age Group - " + age_group, :size => 24
     pdf.text "Event - " + event, :size => 20
   
-    if @@field_events.include?(event)
+    if Event.is_field_event?(event)
       create_field_event_table(age_group, event, participants_array)
     else
       create_running_event_table(age_group, event, participants_array)

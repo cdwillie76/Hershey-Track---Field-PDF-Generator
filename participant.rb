@@ -1,7 +1,6 @@
 class Participant
   attr_accessor :name, :community, :time_distance
   
-  # TODO: Not finished and might not be the way to do it
   def self.field_event_sort(a, b)
     a_parts = a.time_distance.scan(/'([\d]*):([\d]*).([\d]*)/)
     b_parts = b.time_distance.scan(/'([\d]*):([\d]*).([\d]*)/)
