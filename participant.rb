@@ -50,4 +50,21 @@ class Participant
       1
     end
   end
+  
+  def create_array(event)
+    row = []
+    row << name.to_s
+    row << community.to_s
+    if Event.is_field_event?(event)
+      4.times do
+        row << ''
+      end
+    else
+      2.times do
+        row << ''
+      end
+    end
+    
+    row
+  end
 end

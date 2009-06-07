@@ -27,30 +27,16 @@ class HersheyMeetData
     participant_array << participant
   end
 
-  def age_group_count
-    @age_groups.size
-  end
-
-  def has_age_group?(age_group)
-    @age_groups.has_key?(age_group)
-  end
-
-  def has_event?(age_group, event)
-    age_group_events = @age_groups[age_group]
-    if age_group_events
-      age_group_events.has_key?(event)
-    end
-  end
-
-  def participant_count(age_group, event)
-    age_group_events = @age_groups[age_group]
-    if age_group_events
-      if age_group_events.has_key?(event)
-        age_group_events[event].size
+  def each_event_as_array
+    @age_groups.each do |age_group, event_hash|
+      event_hash.each_key do |event|
+        yield age_group, event, event_array(age_group, event)
       end
     end
   end
 
+  private 
+  
   def event_array(age_group, event)
     results = []
     age_group_events = @age_groups[age_group]
@@ -65,36 +51,11 @@ class HersheyMeetData
         end
         
         event_participants.each do |participant|
-          row = []
-          row << participant.name.to_s
-          row << participant.community.to_s
-          if Event.is_field_event?(event)
-            4.times do
-              row << ''
-            end
-          else
-            2.times do
-              row << ''
-            end
-          end
-          results << row
+          results << participant.create_array(event)
         end
       end
     end
     
     results.to_a
   end
-  
-  def each_event_as_array
-    @age_groups.each do |age_group, event_hash|
-      event_hash.each_key do |event|
-        yield age_group, event, event_array(age_group, event)
-      end
-    end
-  end
-  
-  # str.scan(/'([\d]*):([\d]*).([\d]*)/)
-  # sort help
-  # objects.sort_by {|obj| obj.attribute}
-  # http://stackoverflow.com/questions/882070/sorting-an-array-of-objects-in-ruby-by-object-attribute
 end

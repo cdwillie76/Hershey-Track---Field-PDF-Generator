@@ -15,11 +15,6 @@ class TestHersheyMeetData < Test::Unit::TestCase
     hershey_meet_data = HersheyMeetData.new
     hershey_meet_data.add_participant( test_participant[0], test_participant[1], test_participant[2], test_participant[3], nil)
     
-    # Not sure if I need these tests anymore now that I have the each_event_as_array method
-    assert(hershey_meet_data.has_age_group?('Boys 9 & 10'))
-    assert(hershey_meet_data.has_event?('Boys 9 & 10', 'Standing Long Jump'))
-    assert_equal(1, hershey_meet_data.participant_count('Boys 9 & 10', 'Standing Long Jump'))
-    
     hershey_meet_data.each_event_as_array do |age_group, event, participants_array|
       if ((age_group == 'Boys 9 & 10') && (event == 'Standing Long Jump'))
         assert_equal(boys9_10_standing_long_jump, participants_array)
@@ -105,25 +100,5 @@ class TestHersheyMeetData < Test::Unit::TestCase
     end
 
     assert_equal(count_events, 4)
-
-    assert(hershey_meet_data.has_age_group?('Boys 9 & 10'))
-    assert(hershey_meet_data.has_event?('Boys 9 & 10', 'Standing Long Jump'))
-    assert_equal(5, hershey_meet_data.participant_count('Boys 9 & 10', 'Standing Long Jump'))
-    assert_equal(boys9_10_standing_long_jump, hershey_meet_data.event_array('Boys 9 & 10', 'Standing Long Jump'))
-
-    assert(hershey_meet_data.has_age_group?('Boys 9 & 10'))
-    assert(hershey_meet_data.has_event?('Boys 9 & 10', '200 M Dash'))
-    assert_equal(5, hershey_meet_data.participant_count('Boys 9 & 10', '200 M Dash'))
-    assert_equal(boys9_10_200m_dash, hershey_meet_data.event_array('Boys 9 & 10', '200 M Dash'))
-
-    assert(hershey_meet_data.has_age_group?('Girls 9 & 10'))
-    assert(hershey_meet_data.has_event?('Girls 9 & 10', 'Standing Long Jump'))
-    assert_equal(3, hershey_meet_data.participant_count('Girls 9 & 10', 'Standing Long Jump'))
-    assert_equal(girls9_10_standing_long_jump, hershey_meet_data.event_array('Girls 9 & 10', 'Standing Long Jump'))
-
-    assert(hershey_meet_data.has_age_group?('Girls 9 & 10'))
-    assert(hershey_meet_data.has_event?('Girls 9 & 10', '200 M Dash'))
-    assert_equal(4, hershey_meet_data.participant_count('Girls 9 & 10', '200 M Dash'))
-    assert_equal(girls9_10_200m_dash, hershey_meet_data.event_array('Girls 9 & 10', '200 M Dash'))
   end
 end
