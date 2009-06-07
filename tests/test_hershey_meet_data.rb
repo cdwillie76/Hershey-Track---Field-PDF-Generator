@@ -88,16 +88,16 @@ class TestHersheyMeetData < Test::Unit::TestCase
     
     hershey_meet_data.each_event_as_array do |age_group, event, participants_array|
       if ((age_group == 'Boys 9 & 10') && (event == 'Standing Long Jump'))
-        assert_equal(boys9_10_standing_long_jump, participants_array)
+        assert_equal(participants_array, boys9_10_standing_long_jump)
         count_events += 1
       elsif ((age_group == 'Boys 9 & 10') && (event == '200 M Dash'))
-        assert_equal(boys9_10_200m_dash, participants_array)
+        assert_equal(participants_array, boys9_10_200m_dash)
         count_events += 1
       elsif ((age_group == 'Girls 9 & 10') && (event == 'Standing Long Jump'))
-        assert_equal(girls9_10_standing_long_jump, participants_array)
+        assert_equal(participants_array, girls9_10_standing_long_jump)
         count_events += 1
       elsif ((age_group == 'Girls 9 & 10') && (event == '200 M Dash'))
-        assert_equal(girls9_10_200m_dash, participants_array)
+        assert_equal(participants_array, girls9_10_200m_dash)
         count_events += 1
       else
         flunk("Found event that shouldn't exist")

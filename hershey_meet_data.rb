@@ -58,6 +58,14 @@ class HersheyMeetData
     if age_group_events
       if age_group_events.has_key?(event)
         event_participants = age_group_events.fetch(event)
+        
+        if @@field_events.include?(event)
+          event_participants.sort!{ |a, b| Participant.field_event_sort(a, b) }
+        else
+          event_participants.sort!{ |a, b| Participant.running_event_sort(a, b) }
+        end
+        
+        
         event_participants.each do |participant|
           row = []
           row << participant.name.to_s
