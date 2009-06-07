@@ -5,7 +5,9 @@ class Participant
     a_parts = a.time_distance.scan(/'([\d]*):([\d]*).([\d]*)/)
     b_parts = b.time_distance.scan(/'([\d]*):([\d]*).([\d]*)/)
     
-    if a_parts[0][0] == b_parts[0][0]
+    if(a_parts.empty? || b_parts.empty?)
+      0
+    elsif a_parts[0][0] == b_parts[0][0]
       if a_parts[0][1] == b_parts[0][1]
         if a_parts[0][2] > b_parts[0][2]
           -1
@@ -30,7 +32,9 @@ class Participant
     a_parts = a.time_distance.scan(/'([\d]*):([\d]*).([\d]*)/)
     b_parts = b.time_distance.scan(/'([\d]*):([\d]*).([\d]*)/)
     
-    if a_parts[0][0] == b_parts[0][0]
+    if(a_parts.empty? || b_parts.empty?)
+      0
+    elsif a_parts[0][0] == b_parts[0][0]
       if a_parts[0][1] == b_parts[0][1]
         if a_parts[0][2] < b_parts[0][2]
           -1

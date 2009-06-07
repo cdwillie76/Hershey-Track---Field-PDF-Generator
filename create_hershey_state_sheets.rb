@@ -33,7 +33,7 @@ if ARGV[0] != nil
     community = row.at(community_index).to_s('utf-8')
     time_distance = row.at(time_distance_index).to_s('utf-8')
     
-    hershey_meet_data.add_participant(name, community, event, age_group)
+    hershey_meet_data.add_participant(name, community, event, age_group, time_distance)
   }
   
   hershey_pdf = HersheyPdf.new
