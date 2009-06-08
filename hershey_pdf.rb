@@ -5,17 +5,16 @@ require 'prawn/layout'
 require 'event'
 
 class HersheyPdf
-  @@field_events = ['Softball Throw', 'Standing Long Jump']
-
-  attr_accessor :pdf
 
   def initialize
+    @pdf = Prawn::Document.new(:page_layout => :landscape)
+    @pdf.font "Helvetica"
   end
 
   def add_table(age_group, event, participants_array)
-    pdf.text "New York West Finals", :size => 32
-    pdf.text "Age Group - " + age_group, :size => 24
-    pdf.text "Event - " + event, :size => 20
+    @pdf.text "New York West Finals", :size => 32
+    @pdf.text "Age Group - " + age_group, :size => 24
+    @pdf.text "Event - " + event, :size => 20
   
     if Event.is_field_event?(event)
       create_field_event_table(age_group, event, participants_array)
@@ -23,11 +22,19 @@ class HersheyPdf
       create_running_event_table(age_group, event, participants_array)
     end
   end
+  
+  def start_new_page
+    @pdf.start_new_page
+  end
+  
+  def render_file(filename)
+    @pdf.render_file filename
+  end
 
   private
 
     def create_running_event_table(age_group, event, participants_array)
-      pdf.table participants_array,
+      @pdf.table participants_array,
         :position => :left,
         :align_headers => :center,
         :headers => ['Number - Name', 'Community', 'Time', 'Place'],
@@ -37,7 +44,7 @@ class HersheyPdf
     end
 
     def create_field_event_table(age_group, event, participants_array)
-      pdf.table participants_array,
+      @pdf.table participants_array,
         :position => :left,
         :align_headers => :center,
         :headers => ['Number - Name', 'Community', 'Distance', 'Distance', 'Distance', 'Place'],

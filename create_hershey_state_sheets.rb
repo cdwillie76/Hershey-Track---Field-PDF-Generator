@@ -37,21 +37,19 @@ if ARGV[0] != nil
   }
   
   hershey_pdf = HersheyPdf.new
-  
-  Prawn::Document.generate "table_demo.pdf", :page_layout => :landscape do |pdf|
-    pdf.font "Helvetica"
-    hershey_pdf.pdf = pdf
-    count = 0
+
+  count = 0
     
-    hershey_meet_data.each_event_as_array do |age_group, event, participants_array|
-      if(count != 0)
-        pdf.start_new_page
-      end
-    
-      hershey_pdf.add_table(age_group, event, participants_array)
-      count += 1
+  hershey_meet_data.each_event_as_array do |age_group, event, participants_array|
+    if(count != 0)
+      hershey_pdf.start_new_page
     end
+    
+    hershey_pdf.add_table(age_group, event, participants_array)
+    count += 1
   end
+  
+  hershey_pdf.render_file("test_demo.pdf")
 else
   puts 'Usage: ruby create_hershey_state_sheets.rb <excel file>'
 end
