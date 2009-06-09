@@ -1,40 +1,20 @@
 require 'rubygems' 
 require 'prawn'
 require 'prawn/layout'
-require 'parseexcel'
 
 require 'participant'
 require 'hershey_meet_data'
+require 'hershey_data_parser'
 require 'hershey_pdf'
 
+# argc[0] is the filename to parse
 if ARGV[0] != nil
-  workbook = Spreadsheet::ParseExcel.parse(ARGV[0]) 
-
-  # usually, you want the first worksheet: 
-  worksheet = workbook.worksheet(0)
   
   hershey_meet_data = HersheyMeetData.new
   
-  # this will skip the column heading row
-  skip = 1 
-  
-  # indicies for the needed columns, zero indexed
-  age_group_index = 14
-  event_index = 15
-  first_name_index = 16
-  last_name_index = 17
-  community_index = 19
-  time_distance_index = 21
-  
-  worksheet.each(skip) { |row| 
-    name = row.at(first_name_index).to_s('utf-8') + " " + row.at(last_name_index).to_s('utf-8')
-    event = row.at(event_index).to_s('utf-8')
-    age_group = row.at(age_group_index).to_s('utf-8')
-    community = row.at(community_index).to_s('utf-8')
-    time_distance = row.at(time_distance_index).to_s('utf-8')
-    
+  HersheyDataParser.parse_excel_binary(ARGV[0]) do |name, community, event, age_group, time_distance|  
     hershey_meet_data.add_participant(name, community, event, age_group, time_distance)
-  }
+  end
   
   hershey_pdf = HersheyPdf.new
 
