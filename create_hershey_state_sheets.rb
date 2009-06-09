@@ -18,7 +18,7 @@ if ARGV[0] != nil
   # this will skip the column heading row
   skip = 1 
   
-  # indicies for the needed columns
+  # indicies for the needed columns, zero indexed
   age_group_index = 14
   event_index = 15
   first_name_index = 16

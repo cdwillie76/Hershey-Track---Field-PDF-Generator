@@ -45,9 +45,9 @@ class HersheyMeetData
         event_participants = age_group_events.fetch(event)
         
         if Event.is_field_event?(event)
-          event_participants.sort!{ |a, b| Participant.field_event_sort(a, b) }
+          event_participants = Participant.field_event_sort(event_participants)
         else
-          event_participants.sort!{ |a, b| Participant.running_event_sort(a, b) }
+          event_participants = Participant.running_event_sort(event_participants)
         end
         
         event_participants.each do |participant|

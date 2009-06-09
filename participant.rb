@@ -18,57 +18,17 @@ class Participant
     row
   end
   
-  def self.field_event_sort(a, b)
-    a_parts = a.time_distance.scan(/'([\d]*):([\d]*).([\d]*)/)
-    b_parts = b.time_distance.scan(/'([\d]*):([\d]*).([\d]*)/)
-    
-    if(a_parts.empty? || b_parts.empty?)
-      0
-    elsif a_parts[0][0] == b_parts[0][0]
-      if a_parts[0][1] == b_parts[0][1]
-        if a_parts[0][2] > b_parts[0][2]
-          -1
-        elsif a_parts[0][2] < b_parts[0][2]
-          1
-        else
-          0
-        end
-      elsif a_parts[0][1] > b_parts[0][1]
-        -1
-      else
-        1
-      end  
-    elsif a_parts[0][0] > b_parts[0][0]
-      -1
-    else
-      1
-    end
+  def self.field_event_sort(event_participants)
+    Participant.running_event_sort(event_participants).reverse
   end
   
-  def self.running_event_sort(a, b)
-    a_parts = a.time_distance.scan(/'([\d]*):([\d]*).([\d]*)/)
-    b_parts = b.time_distance.scan(/'([\d]*):([\d]*).([\d]*)/)
-    
-    if(a_parts.empty? || b_parts.empty?)
-      0
-    elsif a_parts[0][0] == b_parts[0][0]
-      if a_parts[0][1] == b_parts[0][1]
-        if a_parts[0][2] < b_parts[0][2]
-          -1
-        elsif a_parts[0][2] > b_parts[0][2]
-          1
-        else
-          0
-        end
-      elsif a_parts[0][1] < b_parts[0][1]
-        -1
+  def self.running_event_sort(event_participants)
+    event_participants = event_participants.sort_by do |s|
+      if s.time_distance =~ /'(\d+):(\d+)\.(\d+)/
+        [ $1, $2, $3 ].map { |digits| digits.to_i } 
       else
-        1
-      end  
-    elsif a_parts[0][0] < b_parts[0][0]
-      -1
-    else
-      1
+        []
+      end
     end
   end
 end
