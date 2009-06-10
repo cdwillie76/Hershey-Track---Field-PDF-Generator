@@ -12,9 +12,9 @@ class HersheyPdf
   end
 
   def add_table(age_group, event, participants_array)
-    @pdf.text "New York West Finals", :size => 32
-    @pdf.text "Age Group - " + age_group, :size => 24
-    @pdf.text "Event - " + event, :size => 20
+    header_text = "New York West Finals - " + age_group + " - " + event
+    
+    @pdf.text header_text, :size => 24
   
     if Event.is_field_event?(event)
       create_field_event_table(age_group, event, participants_array)
@@ -38,7 +38,7 @@ class HersheyPdf
         :position => :left,
         :align_headers => :center,
         :headers => ['Number - Name', 'Community', 'Time', 'Place'],
-        :column_widths => { 0 => 200, 1 => 100, 2 => 90, 3 => 90 },
+        :column_widths => { 0 => 200, 1 => 150, 2 => 90, 3 => 90 },
         :border_style => :grid,
         :row_colors => ["FFFFFF", "C0C0C0"]
     end
@@ -48,7 +48,7 @@ class HersheyPdf
         :position => :left,
         :align_headers => :center,
         :headers => ['Number - Name', 'Community', 'Distance', 'Distance', 'Distance', 'Place'],
-        :column_widths => { 0 => 200, 1 => 100, 2 => 90, 3 => 90, 4 => 90, 5 => 90},
+        :column_widths => { 0 => 200, 1 => 150, 2 => 90, 3 => 90, 4 => 90, 5 => 90},
         :border_style => :grid,
         :row_colors => ["FFFFFF", "C0C0C0"]
     end

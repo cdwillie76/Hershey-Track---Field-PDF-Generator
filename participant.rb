@@ -18,11 +18,11 @@ class Participant
     row
   end
   
-  def self.field_event_sort(event_participants)
-    Participant.running_event_sort(event_participants).reverse
+  def self.running_event_sort(event_participants)
+    Participant.field_event_sort(event_participants).reverse
   end
   
-  def self.running_event_sort(event_participants)
+  def self.field_event_sort(event_participants)
     event_participants = event_participants.sort_by do |s|
       if s.time_distance =~ /'(\d+):(\d+)\.(\d+)/
         [ $1, $2, $3 ].map { |digits| digits.to_i } 

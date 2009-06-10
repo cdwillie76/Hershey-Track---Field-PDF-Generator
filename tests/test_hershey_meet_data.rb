@@ -48,29 +48,29 @@ class TestHersheyMeetData < Test::Unit::TestCase
     
     # result data
     boys9_10_standing_long_jump =
-    [ ['#4 John Doe', 'Anytown', '', '', '', ''],
-      ['#3 John Doe', 'Manilus', '', '', '', ''],
-      ['#2 John Doe', 'Ilion', '', '', '', ''],
+    [ ['#1 John Doe', 'Cherry Valley', '', '', '', ''],
       ['#5 John Doe', 'Anytown', '', '', '', ''],
-      ['#1 John Doe', 'Cherry Valley', '', '', '', ''] ]
+      ['#2 John Doe', 'Ilion', '', '', '', ''],
+      ['#3 John Doe', 'Manilus', '', '', '', ''],
+      ['#4 John Doe', 'Anytown', '', '', '', ''] ]
       
     girls9_10_standing_long_jump = 
-    [ ['#7 John Doe', 'Anytown', '', '', '', ''],
+    [ ['#6 John Doe', 'Anytown', '', '', '', ''],
       ['#8 John Doe', 'Anytown', '', '', '', ''],
-      ['#6 John Doe', 'Anytown', '', '', '', '']]
-      
+      ['#7 John Doe', 'Anytown', '', '', '', '']]
+        
     boys9_10_200m_dash = 
-    [ ['#11 John Doe', 'Anytown', '', ''],
-      ['#10 John Doe', 'Anytown', '', ''],
-      ['#12 John Doe', 'Anytown', '', ''],
+    [ ['#9 John Doe', 'Anytown', '', ''],
       ['#13 John Doe', 'Anytown', '', ''],
-      ['#9 John Doe', 'Anytown', '', '']]
+      ['#12 John Doe', 'Anytown', '', ''],
+      ['#10 John Doe', 'Anytown', '', ''],
+      ['#11 John Doe', 'Anytown', '', '']]
     
     girls9_10_200m_dash = 
-    [ ['#17 John Doe', 'Anytown', '', ''],
-      ['#15 John Doe', 'Anytown', '', ''],
+    [ ['#16 John Doe', 'Anytown', '', ''],
       ['#14 John Doe', 'Anytown', '', ''],
-      ['#16 John Doe', 'Anytown', '', '']]
+      ['#15 John Doe', 'Anytown', '', ''],
+      ['#17 John Doe', 'Anytown', '', '']]
   
     hershey_meet_data = HersheyMeetData.new
     
