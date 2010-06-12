@@ -38,9 +38,10 @@ class HersheyPdf
         :position => :left,
         :align_headers => :center,
         :headers => ['Number - Name', 'Community', 'Time', 'Place'],
-        :column_widths => { 0 => 200, 1 => 150, 2 => 90, 3 => 90 },
+        :column_widths => { 0 => 200, 1 => 110, 2 => 100, 3 => 100 },
         :border_style => :grid,
-        :row_colors => ["FFFFFF", "C0C0C0"]
+        :row_colors => ["FFFFFF", "C0C0C0"],
+        :vertical_padding => 10
     end
 
     def create_field_event_table(age_group, event, participants_array)
@@ -48,8 +49,9 @@ class HersheyPdf
         :position => :left,
         :align_headers => :center,
         :headers => ['Number - Name', 'Community', 'Distance', 'Distance', 'Distance', 'Place'],
-        :column_widths => { 0 => 200, 1 => 150, 2 => 90, 3 => 90, 4 => 90, 5 => 90},
+        :column_widths => { 0 => 200, 1 => 110, 2 => 100, 3 => 100, 4 => 100, 5 => 100},
         :border_style => :grid,
-        :row_colors => ["FFFFFF", "C0C0C0"]
+        :row_colors => ["FFFFFF", "C0C0C0"],
+        :vertical_padding => 10
     end
 end
