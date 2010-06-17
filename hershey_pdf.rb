@@ -8,13 +8,15 @@ class HersheyPdf
 
   def initialize
     @pdf = Prawn::Document.new(:page_layout => :landscape)
-    @pdf.font "Helvetica"
+    # @pdf.font "Helvetica"
   end
 
   def add_table(age_group, event, participants_array)
     header_text = "New York West Finals - " + age_group + " - " + event
     
+    @pdf.font "Helvetica", :style => :normal
     @pdf.text header_text, :size => 24
+    @pdf.font "Helvetica", :style => :bold
   
     if Event.is_field_event?(event)
       create_field_event_table(age_group, event, participants_array)
@@ -40,7 +42,7 @@ class HersheyPdf
         :headers => ['Number - Name', 'Community', 'Time', 'Place'],
         :column_widths => { 0 => 200, 1 => 110, 2 => 100, 3 => 100 },
         :border_style => :grid,
-        :row_colors => ["FFFFFF", "C0C0C0"],
+        :row_colors => ["FFFFFF", "F5F5F5"],
         :vertical_padding => 10
     end
 
@@ -51,7 +53,7 @@ class HersheyPdf
         :headers => ['Number - Name', 'Community', 'Distance', 'Distance', 'Distance', 'Place'],
         :column_widths => { 0 => 200, 1 => 110, 2 => 100, 3 => 100, 4 => 100, 5 => 100},
         :border_style => :grid,
-        :row_colors => ["FFFFFF", "C0C0C0"],
+        :row_colors => ["FFFFFF", "F5F5F5"],
         :vertical_padding => 10
     end
 end
