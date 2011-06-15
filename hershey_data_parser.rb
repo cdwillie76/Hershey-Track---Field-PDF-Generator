@@ -11,12 +11,12 @@ class HersheyDataParser
     skip = 1 
 
     # indicies for the needed columns, zero indexed
-    age_group_index = 14
-    event_index = 15
-    first_name_index = 16
-    last_name_index = 17
-    community_index = 19
-    time_distance_index = 21
+    age_group_index = 16
+    event_index = 17
+    first_name_index = 18
+    last_name_index = 19
+    community_index = 21
+    time_distance_index = 23
 
     worksheet.each(skip) { |row| 
       name = row.at(first_name_index).to_s('utf-8') + " " + row.at(last_name_index).to_s('utf-8')
