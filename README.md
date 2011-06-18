@@ -24,6 +24,5 @@ Ruby 1.8.7-p334 or later
 * Remove hardcode of the Meet Header
 * Better handle when an event has more than 16 participants
 * Better handle the relays
-* Figure out how to parse the "web version" of the xls file that Hershey is generating
-** Or get Hershey to just generate a csv file instead
+* Figure out how to parse the "web version" of the xls file that Hershey is generating or get Hershey to just generate a csv file instead
 * Convert to a webapp that anyone can use
