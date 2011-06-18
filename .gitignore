@@ -2,3 +2,4 @@
 *.pdf
 **/*.xls
 **/*.csv
+data
