@@ -16,7 +16,7 @@ class HersheyStateSheets
   def create_pdfs()
     hershey_meet_data = HersheyMeetData.new
 
-    HersheyDataParser.parse_excel_binary(@excel_file) do |name, community, event, age_group, time_distance|  
+    HersheyDataParser.parse_csv_file(@excel_file) do |name, community, event, age_group, time_distance|  
       hershey_meet_data.add_participant(name, community, event, age_group, time_distance)
     end
 
