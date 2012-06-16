@@ -7,6 +7,7 @@ The Hershey Track & Filed PDF Generator is a tool written in Ruby to be used by 
 * Ruby 1.8.7-p334 or later
 * (Gem) prawn 0.8.4 (Must use this version, haven't been ported to the newest version)
 * (Gem) parseexcel 0.5.2
+* (Gem) fastercsv (1.5.5)
 
 # Usage
 
